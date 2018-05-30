@@ -1,9 +1,39 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
+
+import {SubmissionError} from 'redux-form';
+import 'react-redux';
+import 'redux';
+
+import LoginForm from './components/LoginForm';
+
 class App extends Component {
-  render() {
+  submit = inputs => {
+    if (['rajat', 'batman'].includes (inputs.username)) {
+      throw new SubmissionError ({
+        username: 'Username already taken',
+      });
+    } else {
+      window.alert (JSON.stringify (inputs));
+    }
+  };
+
+  getInitialValues () {
+    return {
+      username: 'rajat',
+      password: '',
+    };
+  }
+  render () {
     return (
-      <h1>Geeky Form</h1>
-    )
+      <Fragment>
+        <h1>Geeky Form</h1>
+        <LoginForm
+          onSubmit={this.submit}
+          initialValues={this.getInitialValues ()}
+        />
+      </Fragment>
+    );
   }
 }
+
 export default App;

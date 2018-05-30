@@ -3,17 +3,17 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
-import App from '../App';
+import App from './App';
 
+// specify that formReducer is one of the app’s reducer
 const reducers = {
     form: formReducer,
 };
-
-
+// combine them all into a single reducer
 const reducer = combineReducers(reducers);
+
 let store = createStore(
-    reducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    reducer
 );
 
 export default class Preview extends React.Component {
@@ -25,3 +25,10 @@ export default class Preview extends React.Component {
         );
     }
 }
+
+ReactDOM.render(
+    <Provider store={store}>
+        <App />
+    </Provider>,
+    document.getElementById('root')
+);
