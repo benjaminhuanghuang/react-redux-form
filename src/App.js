@@ -29,7 +29,7 @@ class App extends Component {
         <h1>Geeky Form</h1>
         <LoginForm
           onSubmit={this.submit}
-          initialValues={this.getInitialValues ()}
+          initialValues={this.getInitialValues ()}    // Form init value
         />
       </Fragment>
     );

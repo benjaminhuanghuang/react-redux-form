@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
 
 import {MyInput} from '../Field';
+import {validate} from '../../validation';
 
 class LoginForm extends Component {
   render () {
@@ -28,6 +29,7 @@ class LoginForm extends Component {
 
 LoginForm = reduxForm ({
   form: 'login',
+  validation
 }) (LoginForm);
 
 export default LoginForm;
